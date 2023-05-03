@@ -1,0 +1,43 @@
+
+
+
+
+Unit
+OpenTag|Content|CloseTag
+OpenTag|CloseTag
+OpenTag|OpenTag
+
+
+CloseTag
+    </chars>
+    </chars" ">
+
+OpenTag
+    <tagname>
+    <tagname Attributes>
+
+
+Tagname
+   chars" "
+   chars>
+  
+
+Attributes
+ " "Chars>
+
+
+Content
+   chars<
+    " "<
+
+
+
+---------------------------------------------------
+Tokens 
+    OpenTag
+    CloseTag
+    Tagname
+    Content
+    Char
+
+

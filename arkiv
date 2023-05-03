@@ -1,0 +1,41 @@
+def checkDir(dir = @rootDirectory)
+
+searchDirectory = Dir.new(dir)
+
+filesToParse = Array.new
+
+searchDirectory.each_child do |entry|
+    if entry.end_with?(".html") 
+        filesToParse.push(dir + "/" + entry)
+    elsif Dir.exist?(dir + "/" + entry)
+        filesToParse.push(checkDir(dir + "/" + entry))
+    end
+end
+
+searchDirectory.close
+return filesToParse
+
+end
+
+
+
+
+
+
+ 
+contentBuffer.chop!
+results[tagBuffer].push(contentBuffer)
+elsif tags.include?(tagBuffer) && !endOfTag
+ while currChar != ">" && !file.eof?
+   currChar = file.getc
+ end
+ while currChar != "<" && !file.eof?
+   currChar = file.getc
+   contentBuffer += currChar
+end
+contentBuffer.chop!
+results[tagBuffer].push(contentBuffer)
+end
+   
+  
+end
