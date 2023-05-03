@@ -3,9 +3,7 @@
 
 
 Unit
-OpenTag|Content|CloseTag
-OpenTag|CloseTag
-OpenTag|OpenTag
+OpenTag|Content (CloseTag)
 
 
 CloseTag
