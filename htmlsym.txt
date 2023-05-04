@@ -1,32 +1,34 @@
 
+<ha class="test">Detta är min testtag med class</ha>
 
 
 
 Unit
-OpenTag|Content (CloseTag)
+OpenTag|Content|CloseTag
+OpenTag|Content|Unit
+OpenTag|Unit
 
 
 CloseTag
-    </chars>
-    </chars" ">
+    </tagname>
+    </tagname" ">
 
 OpenTag
     <tagname>
     <tagname Attributes>
 
-
 Tagname
    chars" "
-   chars>
-  
 
 Attributes
- " "Chars>
+  Chars (ej < >)
 
 
 Content
-   chars<
-    " "<
+   chars (ej < >)
+   " "chars (ej < >)
+   ""
+   
 
 
 
@@ -35,7 +37,7 @@ Tokens
     OpenTag
     CloseTag
     Tagname
+    Attributes
     Content
-    Char
-
+    
 

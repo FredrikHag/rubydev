@@ -1,6 +1,6 @@
 
 
-require "./parser"
+require "./parser2"
 #require "./indexDocument"
 #require "./categories"
 #require "./request"
@@ -13,26 +13,21 @@ require "./Tokenstream"
 
 #filesToParse = HtmlParser::checkDir("./_site_test")
 
-path = "./_site_test/index.html"
+path = "./testfil.html"
 
 
 
 
-parser = Parser.new(path)
+parser = Parser2.new(path)
 
-parser.parse()
+puts parser.stripTags()
 
 
 
-strongElements = Array.new
 
-strongElements = parser.results.each do |result|
-  if result.include?("<strong>")
-    return result
-  end
-end
 
-puts strongElements.inspect
+
+
 
 
 #parser.parse
