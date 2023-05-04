@@ -1,18 +1,17 @@
 require "./categories"
-require "./htmlparse"
+
 
 
 
 class IndexDocument
-    attr_accessor :type, :title_val, :implementation_val, :method_val, :parent_val, :path_val, :h1_val
+    attr_accessor :type, :title_val, :implementation_val, :method_val, :parent_val, :path_val, :text
 
     def initialize(path)
         
         parsePath(path)
         @path_val = path
         @title_val = getTitle(path)
-        @h1_val = HtmlParser::getContentPerTag(path, ["h1"])
-    
+        @text = Parser2.new(path).stripTags
         
     end
 

@@ -1,7 +1,7 @@
 
 
 require "./parser2"
-#require "./indexDocument"
+require "./indexDocument"
 #require "./categories"
 #require "./request"
 #require "./addDocumentRequest"
@@ -14,16 +14,17 @@ require "./Tokenstream"
 #filesToParse = HtmlParser::checkDir("./_site_test")
 
 path = "./testfil.html"
-path2 = "./_site_test/index.html"
+path2 = "./_site_test/introduction.html"
 
 resultfile = File.open("./test.txt", "w")
 
+document = IndexDocument.new(path2)
 
+puts document.text
 
+#parser = Parser2.new(path2)
 
-parser = Parser2.new(path2)
-
-resultfile << parser.stripTags()
+#resultfile << parser.stripTags()
 
 
 
