@@ -14,13 +14,16 @@ require "./Tokenstream"
 #filesToParse = HtmlParser::checkDir("./_site_test")
 
 path = "./testfil.html"
+path2 = "./_site_test/index.html"
+
+resultfile = File.open("./test.txt", "w")
 
 
 
 
-parser = Parser2.new(path)
+parser = Parser2.new(path2)
 
-puts parser.stripTags()
+resultfile << parser.stripTags()
 
 
 

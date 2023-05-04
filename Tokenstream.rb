@@ -72,7 +72,7 @@ end
 def getNext()
 
     read()
-    puts "reading from file: " + (@buffer.first.nil? ? "eof" : @buffer.first)
+   # puts "reading from file: " + (@buffer.first.nil? ? "eof" : @buffer.first)
 
     if @buffer.first.nil?
         @eof = true

@@ -20,9 +20,14 @@ def stripTags()
     while !@stream.eot && !stream.eof
         token = @stream.getToken()
             if token.type == 'content'
-                buffer += token.value
+                token.value.squeeze!(" ", "\n", "\r", "\t")
+                token.value.strip!
+                push = token.value + " "
+                push.lstrip!
+                buffer += push
             end
         end
+        
         return buffer
     end
 
