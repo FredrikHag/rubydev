@@ -2,15 +2,14 @@ require "./Tokenstream.rb"
 
 
 class Parser2    
-    attr_reader :stream, :openTags, :closeTags, :content, :units, :tags, :path, :unitTable, :stringId, :stringTable
+    attr_reader :stream, :stream, :closeTags, :content, :units, :tags, :path, :unitTable, :stringId, :stringTable, :documents, :dir
         def initialize(path)
-            @stream = Tokenstream.new(File.open(path, "r"))
             @units = {all: Array.new}
             @tags = Array.new
             @path = path
             @unitTable = Array.new
-            @stringTable = Hash.new
-            @stringId = 0
+            @documents = Array.new
+            @stream = Tokenstream.new(File.open(path, "r"))
         end
 
 
@@ -32,6 +31,23 @@ def stripTags()
     end
 
 
+ 
+def getText()
+    parse()
+    text = ""
+    @unitTable.each do |unit|
+        if unit.tag.name != "script"
+            unit.content.squeeze!(" ", "\n", "\r", "\t")
+            unit.content.strip!
+            push = unit.content + " "
+            push.lstrip!
+            text += push
+        end
+    end
+    return text
+end
+
+
 
 def parse()
 
@@ -48,6 +64,14 @@ while !@stream.eof
 
 end
 puts "Parsed file " + @path
+
+
+rescue Exception
+
+    
+    $!.file.close
+     return
+
 
 end
 
@@ -78,9 +102,7 @@ def unit()
 
     while true
 
-        if @stream.eot
-            return 
-        end
+        
 
         if token.type == "content"
         
@@ -95,9 +117,7 @@ def unit()
 
         token = @stream.getToken()
 
-        if @stream.eot
-            return 
-        end
+        
 
         if token.type == "closeTag"
             break
@@ -105,7 +125,6 @@ def unit()
 
     end  
 
-    puts "finished unit with tag " + token.value.name
 
 
     tag = buffer['tag'].value
@@ -122,10 +141,7 @@ def unit()
     return thisUnit
 end
 
-def save(unit, innerUnits)
 
-    
-end
 
 
 end

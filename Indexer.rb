@@ -1,4 +1,4 @@
-require "./htmlparse"
+require "./parser2"
 require "./indexDocument"
 require "./categories"
 require "./request"
@@ -6,36 +6,65 @@ require "./addDocumentRequest"
 
 
 
-filesToParse = HtmlParser::checkDir("./_site_test")
+class Indexer
+    attr_accessor :dir, :documents
+    def initialize(dir)
+        @dir = dir
+        @documents = Array.new
+    end
 
 
-document = IndexDocument.new("./_site_test/checkout-v3/index.html")
 
-=begin
-documents = Array.new
+def parseDir()
 
-filesToParse.each do |path|
-    documents.push(IndexDocument.new(path))
+    filesToParse = checkDir(@dir)
+    filesToParse.each do |filepath|
+        @documents.push(IndexDocument.new(filepath))
+        puts "Created document for " + filepath
+    end
 end
 
+     
+def checkDir(dir)
+
+    searchDirectory = Dir.new(dir)
+    
+    filesToParse = Array.new
+    
+    searchDirectory.each_child do |entry|
+        if entry.end_with?(".html") 
+            filesToParse.push(dir + "/" + entry)
+        elsif Dir.exist?(dir + "/" + entry)
+            filesToParse.push(checkDir(dir + "/" + entry))
+        end
+    end
+    
+    searchDirectory.close
+    return filesToParse.flatten
+    
+end      
 
 
-request = AddDocumentRequest.new("test2")
 
 
+
+def index()
 
 documentBuffer = Array.new
 
-while documents.size != 0 do
+while @documents.size != 0 do
 
-    while documentBuffer.size < 10 && documents.size != 0 do
-        documentBuffer.push(documents.pop)
+    while documentBuffer.size < 10 && @documents.size != 0 do
+        documentBuffer.push(@documents.pop)
     end
 
-puts postBulk(documentBuffer)
+puts AddDocumentRequest.new("test2").postBulk(documentBuffer)
+
 
 documentBuffer.clear
 
 end
 
 puts "Everything Indexed"
+end
+end

@@ -1,39 +1,21 @@
-
-
 require "./parser2"
 require "./indexDocument"
-#require "./categories"
-#require "./request"
-#require "./addDocumentRequest"
-require "./Tokenstream"
+require "./Indexer.rb"
+
+t1 = Time.new
 
 
 
+indexer = Indexer.new("./_site_test")
 
 
-#filesToParse = HtmlParser::checkDir("./_site_test")
-
-path = "./testfil.html"
-path2 = "./_site_test/introduction.html"
-
-resultfile = File.open("./test.txt", "w")
-
-document = IndexDocument.new(path2)
-
-puts document.text
-
-#parser = Parser2.new(path2)
-
-#resultfile << parser.stripTags()
+indexer.parseDir()
+indexer.index()
 
 
+t2 = Time.new
 
+diff = t2 - t1
 
+puts "Indexed site in #{diff}"
 
-
-
-
-
-#parser.parse
-
-#puts HtmlParser::getContentPerTag("_site_test/checkout-v3/enterprise/introduction.html", ["h1", "strong"])

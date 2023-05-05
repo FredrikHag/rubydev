@@ -8,7 +8,7 @@ class AddDocumentRequest < Request
         attr_reader :bulkbody, :index
 
         def initialize(index)
-            super("/_bulk")
+            super("/_bulk/")
             @bulkbody = ""
             @index = index
         end
@@ -24,18 +24,23 @@ class AddDocumentRequest < Request
                 Implementation: document.implementation_val,
                 Parent: document.parent_val,
                 Path: document.path_val,
-                h1: document.h1_val
+                text: document.text
 
             }
 
-
+            
          @bulkbody += JSON.generate({create: {_index: @index}}) + "\n" + JSON.generate(singleBody) + "\n"
+        
+        
+        
           
         end
 
 
     
+        response = post(@bulkbody)
 
+        return response.code + " " + response.message + " " + response.body
       
            
 

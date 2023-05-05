@@ -32,8 +32,10 @@ end
 def read()
 
     temp = source.getc 
+
     
    if temp.nil? 
+        
         return nil
    end
 
@@ -42,12 +44,13 @@ end
 
 def getToken()
 
+    
     readToken()
 
     temp = @tokenBuffer.shift
 
     if temp.nil?
-        @eot = true
+        raise(Eot.new(source))
     end
 
     return temp
@@ -66,9 +69,11 @@ def getNext()
 end
 
 def readToken()
-    
+
+    if !@eof
     char = getNext()
-   
+    
+
     if char  == "<"
         put(char)
         @tokenBuffer.push(tag())
@@ -76,6 +81,7 @@ def readToken()
         put(char)
         @tokenBuffer.push(content()) 
     end
+end
 end
     
 
@@ -197,8 +203,6 @@ end
 
 
 def putToken(token)
-
-    puts "Putting back token: " + token.type
     
     @tokenBuffer.prepend(token)
 

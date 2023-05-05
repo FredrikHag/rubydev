@@ -11,7 +11,7 @@ class IndexDocument
         parsePath(path)
         @path_val = path
         @title_val = getTitle(path)
-        @text = Parser2.new(path).stripTags
+        @text = Parser2.new(path).getText()
         
     end
 
