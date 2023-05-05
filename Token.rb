@@ -8,13 +8,6 @@ CONTROLCHARS = ["\n", "\r", "\t"]
             @value = value
         end
 
-
-  
-
-
-
-
-
     end
 
 

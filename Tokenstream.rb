@@ -16,12 +16,9 @@ class Tokenstream
 
 
 
-
-
 def start()
 
     temp = source.getc 
-    
     
    while temp != "<" && !@eof
     temp = source.getc 
@@ -29,31 +26,22 @@ def start()
 
    put(temp)
 
-
-
 end
 
 
 def read()
-   
 
     temp = source.getc 
-    
-    
-      
-  
     
    if temp.nil? 
         return nil
    end
 
-   
-        @buffer.push(temp)
-        
-  
+        @buffer.push(temp)  
 end
 
 def getToken()
+
     readToken()
 
     temp = @tokenBuffer.shift
@@ -62,9 +50,6 @@ def getToken()
         @eot = true
     end
 
-
-    puts caller[0] + "is getting token: " + temp.type
-
     return temp
 
 end
@@ -72,7 +57,6 @@ end
 def getNext()
 
     read()
-   # puts "reading from file: " + (@buffer.first.nil? ? "eof" : @buffer.first)
 
     if @buffer.first.nil?
         @eof = true
@@ -85,10 +69,7 @@ def readToken()
     
     char = getNext()
    
-    
-
     if char  == "<"
-        puts "read" + char
         put(char)
         @tokenBuffer.push(tag())
     else
@@ -98,19 +79,10 @@ def readToken()
 end
     
 
-
-   
-
-
-
-
 def content()
     buffer = ""
     char = getNext()
 
-   
-
- 
 
     while char != "<" && !@eof
         buffer += char
@@ -121,9 +93,6 @@ def content()
 
     return Token.new('content', buffer)
 end
-
-
-
 
 
 def tag()
@@ -143,7 +112,6 @@ def tag()
         return openTag()
     end
 end
-
 
 
 def closeTag()
@@ -169,8 +137,6 @@ def closeTag()
 end
 
 
-
-
 def tagname()
     buffer = ""
     char = getNext()
@@ -184,9 +150,7 @@ def tagname()
 
     return buffer
 
-
 end
-
 
 def attributes
     buffer = ""
@@ -206,7 +170,6 @@ end
 def openTag()
   char = ""
 
-
     while char != "<" && !@eof
         char = getNext()
     end
@@ -221,17 +184,14 @@ def openTag()
         return "error"
     end
     
-
     return Token.new('openTag', Tag.new(name, Attributes.new(attributes)))
 
 end
 
 
 def put(chars)
-
-    
-        @buffer.prepend(chars)
-    
+  
+    @buffer.prepend(chars)
     
 end
 
@@ -242,17 +202,15 @@ def putToken(token)
     
     @tokenBuffer.prepend(token)
 
-
 end
 
 
 
 def Token?(char)
-
     
-        if Tokens.include?(char) || char.match?(/[[:alnum:]]/)
-            return true
-        end
+    if Tokens.include?(char) || char.match?(/[[:alnum:]]/)
+        return true
+    end
     
 end
 

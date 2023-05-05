@@ -36,11 +36,7 @@ def stripTags()
 def parse()
 
 while !@stream.eof
-    puts "eof?" 
-    puts @stream.eof
     token = @stream.getToken()
-
-        puts "parse got token " + token.type
 
     if token.type == "openTag"
             @stream.putToken(token)
@@ -72,8 +68,6 @@ def unit()
     end
     
     if (token.type == "openTag")
-        puts "saves token: " + token.type
-        puts token
         buffer['tag'] = token
     else
         puts "error"
