@@ -2,7 +2,7 @@ require "./Tokenstream.rb"
 
 
 class Parser2    
-    attr_reader :stream, :stream, :closeTags, :content, :units, :tags, :path, :unitTable, :stringId, :stringTable, :documents, :dir
+    attr_reader :stream, :units, :tags, :path, :unitTable, :documents
         def initialize(path)
             @units = {all: Array.new}
             @tags = Array.new

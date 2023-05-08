@@ -25,7 +25,7 @@ def parseDir()
 end
 
      
-def checkDir(dir)
+private def checkDir(dir)
 
     searchDirectory = Dir.new(dir)
     
@@ -48,7 +48,7 @@ end
 
 
 
-def index()
+def index(send,index)
 
 documentBuffer = Array.new
 
@@ -58,7 +58,7 @@ while @documents.size != 0 do
         documentBuffer.push(@documents.pop)
     end
 
-puts AddDocumentRequest.new("test2").postBulk(documentBuffer)
+    puts send ? AddDocumentRequest.new(index).postBulk(documentBuffer) : "testmode"
 
 
 documentBuffer.clear

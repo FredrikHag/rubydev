@@ -210,13 +210,5 @@ end
 
 
 
-def Token?(char)
-    
-    if Tokens.include?(char) || char.match?(/[[:alnum:]]/)
-        return true
-    end
-    
-end
-
 
 end

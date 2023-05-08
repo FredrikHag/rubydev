@@ -23,7 +23,7 @@ class AddDocumentRequest < Request
                 PaymentMethod: document.method_val,
                 Implementation: document.implementation_val,
                 Parent: document.parent_val,
-                Path: document.path_val,
+                Url: document.url,
                 text: document.text
 
             }

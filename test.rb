@@ -10,8 +10,11 @@ indexer = Indexer.new("./_site_test")
 
 
 indexer.parseDir()
-indexer.index()
+indexer.index(true, "test3")
 
+indexer.documents.each do |document|
+    puts document
+end
 
 t2 = Time.new
 

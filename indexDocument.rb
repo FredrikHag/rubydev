@@ -4,15 +4,21 @@ require "./categories"
 
 
 class IndexDocument
-    attr_accessor :type, :title_val, :implementation_val, :method_val, :parent_val, :path_val, :text
+    attr_accessor :type, :title_val, :implementation_val, :method_val, :parent_val, :path_val, :text, :url
 
     def initialize(path)
         
         parsePath(path)
-        @path_val = path
         @title_val = getTitle(path)
+        @url = getUrl(path)
         @text = Parser2.new(path).getText()
         
+    end
+
+
+
+    def getUrl(path)
+        return "https://developer.swedbankpay.com" + path.delete_prefix('./_site_test')
     end
 
 
