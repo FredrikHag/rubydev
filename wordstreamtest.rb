@@ -7,21 +7,17 @@ require "./counter.rb"
 
 
 
-indexer = Indexer.new("./_site_test/gift-cards")
+indexer = Indexer.new("./_site_test/checkout-v3")
 
 
 indexer.parseDir()
 #indexer.index(false, "test3")
 
-puts indexer.documents[0]
+documents = indexer.documents
 
+documents.each do |document|
+counter = Counter.new(document)
+end
 
-counter = Counter.new(indexer.documents[0])
-puts counter.wordTable
-counter = Counter.new(indexer.documents[1])
-puts counter.wordTable
-counter = Counter.new(indexer.documents[2])
-puts counter.wordTable
-counter = Counter.new(indexer.documents[3])
 
 

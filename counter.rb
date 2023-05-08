@@ -3,39 +3,58 @@ require "./indexDocument"
 require "./categories"
 require "./request"
 require "./addDocumentRequest"
+require "./consts"
+
 
 
 class Counter
-    attr_accessor :wordTable, :stream, :document
+    attr_accessor :wordTable, :stream, :document, :topWords, :topCounts, :wordStream
 
     def initialize(document)
         @document = document
-        @wordstream = Wordstream.new(document)
+        @wordStream = Wordstream.new(document)
         @wordTable = Hash.new
+        @topWords = Hash.new
+        @topCounts = Array.new
         count()
     end
 
 
 def count()
-    while !@wordstream.eof
-        currentWord = @wordstream.getWord()
+   
+    while !@wordStream.eof
+        currentWord = @wordStream.getWord()
+        if !currentWord.nil? && !EXCLUDED_WORDCOUNTS.include?(currentWord)
 
-        if @wordTable.include?(currentWord)
+        if @wordTable.include?(currentWord) 
             @wordTable[currentWord] += 1
         else
             @wordTable[currentWord] = 1
         end
-
     end
-    puts "Counted Document " + @document.path
+    end
+
     
-    @wordTable.each_pair |word, count| do
-        
+   
+
     
     rescue Exception
+        
+        @wordTable.each_value do |count|
+            @topCounts.push(count)
+        end
     
+        @topCounts.sort!.reverse!
+        maxCounts = @topCounts.take(TOP_WORD_SIZE)
+
+        @wordTable.each_pair do |word, count|
+            if maxCounts.include?(count)
+                @topWords[word] = count
+            end
+        end
         
-        
+        puts @topWords
+
          return
     
     

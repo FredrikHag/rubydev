@@ -22,13 +22,13 @@ class Wordstream < Tokenstream
 
 def getWord()
 
-    if !@eof
+    if !@eof 
     char = getNext()
     buffer = ""
     
 
     while char != " "
-        if char != "."
+        if char != "." 
             buffer += char
         end
         char = getNext()
