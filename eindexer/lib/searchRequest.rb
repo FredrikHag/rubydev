@@ -1,4 +1,4 @@
-require "./request"
+require_relative "request"
 require "net/http"
 require "json"
 

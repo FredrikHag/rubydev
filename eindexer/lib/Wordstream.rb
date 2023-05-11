@@ -1,6 +1,6 @@
-require "./Tokenstream.rb"
+require_relative "Tokenstream.rb"
 require 'stringio'
-require "./Token.rb"
+require_relative "Token.rb"
 
 class Wordstream < Tokenstream
     attr_reader :buffer, :source, :eof, :eot

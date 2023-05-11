@@ -1,8 +1,8 @@
-require "./parser2"
-require "./indexDocument"
-require "./categories"
-require "./request"
-require "./addDocumentRequest"
+require_relative "parser2"
+require_relative "indexDocument"
+require_relative "categories"
+require_relative "request"
+require_relative "addDocumentRequest"
 
 
 

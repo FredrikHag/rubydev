@@ -1,4 +1,4 @@
-require "./Tokenstream.rb"
+require_relative "Tokenstream.rb"
 
 
 class Parser2    
@@ -36,7 +36,7 @@ def getText()
     parse()
     text = ""
     @unitTable.each do |unit|
-        if unit.tag.name != "script"
+        if unit.tag.name == "p" || unit.tag.name == "strong" 
             unit.content.squeeze!(" ", "\n", "\r", "\t")
             unit.content.strip!
             push = unit.content + " "

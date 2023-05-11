@@ -1,4 +1,4 @@
-require "./categories"
+require_relative "categories"
 
 
 
@@ -18,7 +18,7 @@ class IndexDocument
 
 
     def getUrl(path)
-        return "https://developer.swedbankpay.com" + path.delete_prefix('./_site_test')
+        return "https://developer.swedbankpay.com" + path.delete_prefix('./_site')
     end
 
 

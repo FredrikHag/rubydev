@@ -1,5 +1,5 @@
 
-require "./Token.rb"
+require_relative "Token.rb"
 
 class Tokenstream
     attr_reader :buffer, :source, :eof, :eot
