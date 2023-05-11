@@ -13,8 +13,10 @@ class Request
                     "content-type" => CONTENT_TYPE}
 
         @session = Net::HTTP.new(uri.host, uri.port)
-        @session.use_ssl = true
-        @session.ca_file = CA_FILE
+            if USE_SSL
+            @session.use_ssl = true
+            @session.ca_file = CA_FILE
+            end
         @session.start
     end
 

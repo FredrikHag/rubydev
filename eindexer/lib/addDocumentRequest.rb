@@ -24,7 +24,7 @@ class AddDocumentRequest < Request
                 Implementation: document.implementation_val,
                 Parent: document.parent_val,
                 Url: document.url,
-                text: document.text
+                text: document.content
 
             }
 

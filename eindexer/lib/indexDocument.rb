@@ -4,14 +4,16 @@ require_relative "categories"
 
 
 class IndexDocument
-    attr_accessor :type, :title_val, :implementation_val, :method_val, :parent_val, :path_val, :text, :url
+    attr_accessor :type, :title_val, :implementation_val, :method_val, :parent_val, :path_val, :text, :url, :content
 
     def initialize(path)
         
         parsePath(path)
-        @title_val = getTitle(path)
+        
         @url = getUrl(path)
         @text = Parser2.new(path).getText()
+        @content = @text[:content]
+        @title_val = @text[:title]
         
     end
 

@@ -53,7 +53,7 @@ def count()
             end
         end
         
-        puts @topWords
+        puts @document.title_val
 
          return
     

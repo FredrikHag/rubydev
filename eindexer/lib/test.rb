@@ -30,7 +30,7 @@ documents.each do |document|
     counter = Counter.new(document)
     end
 
-indexer.index(true, "test4")
+indexer.index(true, "test2")
 
 
 

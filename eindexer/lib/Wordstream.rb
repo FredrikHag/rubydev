@@ -6,7 +6,7 @@ class Wordstream < Tokenstream
     attr_reader :buffer, :source, :eof, :eot
 
     def initialize(document)
-        source = StringIO.new(document.text)
+        source = StringIO.new(document.content)
         super(source)
     end
 

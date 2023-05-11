@@ -34,14 +34,18 @@ def stripTags()
  
 def getText()
     parse()
-    text = ""
+    text = {content: "", title: ""}
     @unitTable.each do |unit|
-        if unit.tag.name == "p" || unit.tag.name == "strong" 
+        if unit.tag.name == "p" || unit.tag.name == "strong" || unit.tag.name == "h1" 
             unit.content.squeeze!(" ", "\n", "\r", "\t")
             unit.content.strip!
             push = unit.content + " "
             push.lstrip!
-            text += push
+            if unit.tag.name == "h1" 
+                text[:title] = push
+            else
+                text[:content] += push
+            end 
         end
     end
     return text
